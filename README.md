@@ -1,99 +1,36 @@
-# Princess Morning
+# funnystaff.com — Princess Morning
 
-Сайт на HTML, CSS и JavaScript. Для общего дневника нужен сервер Node.js 24; зависимости устанавливать не требуется.
+Experimental personal website: HTML, CSS, vanilla JavaScript, and Node.js 24 with shared SQLite storage. No npm dependencies are required.
 
-## Локальный запуск
+## Run locally
 
-Откройте Terminal и выполните:
+From this repository's folder with Node.js 24, run `npm start`, then open http://127.0.0.1:8000/. Stop with Ctrl+C. Use `PORT=8001 npm start` for a different port.
 
-```sh
-cd '/Users/revakorova/Documents/Codex/2026-10-22/build-the-first-working-page-of-2/outputs/princess-morning'
-node backend/local-server.mjs
-```
+## Current pages
 
-Откройте http://127.0.0.1:8000/ в браузере. Остановить сервер: Ctrl+C.
-Если порт 8000 уже занят текущим предпросмотром, используйте его или замените порт на 8001.
-Также можно открыть index.html напрямую: ссылки и локальные GIF работают без сервера.
+- `index.html`: the bedroom homepage starts dark. The chandelier toggles light; the bed reveals the hidden `your ad here...` link. The computer downloads the poem; the trash bag opens screenshots; the mug opens coffee. Navigation opens additional tabs, leaving the room and music open.
+- The existing bedroom player includes all five supplied tracks, selection, play/pause, previous/next, and automatic advancement. Two AAC originals also have losslessly remuxed M4A copies. Music starts after interaction.
+- `screenshots.html`, titled `paper for recycling`: all 57 original phone screenshots scattered on white. The buzzing fly darts and hovers; clicking it leaves `squashed fly` at the click position. Screenshots do not enlarge.
+- `coffee.html`: original Figma images and local match/drinking recordings. The ashtray and cup change independently, without movement, once per page load.
+- `diary.html`, titled `your ad here`: twelve scattered image spaces, a central text form and shared archive. See `ADS.md` for storage, protections, image limits and administration.
+- `my-bedroom.html` and `my-things.html` redirect old URLs to the current pages.
 
-## Файлы
+## Private data
 
-- index.html — главная страница.
-- styles.css — расположение элементов и оформление.
-- script.js — масштабирование и навигация.
-- my-bedroom.html, coffee.html, screenshots.html, mirror.html, guestbook.html — страницы-заглушки.
-- assets/gifs/ — исходные bear-roses.gif и flyangel.gif, скопированные без изменений из ~/Desktop/myhome.
-- assets/images/ — оригинальные изображения из Figma, включая сохранённые статические версии медведя и ангела.
+The server creates private files in `.runtime/`, including the database and admin credentials. These are excluded from Git. Old diary records and statement histories remain in that local database; visitor submissions are not included in this repository.
 
-## Макет и навигация
+Use `diary-admin.html` for protected administration. Run `npm run admin:password` in your own terminal to display the local administrator password. Keep it private. Never upload `.runtime/`, databases, credentials or `.env` files.
 
-Основа — Figma frame 168:2, 1440 × 900. Вся композиция пропорционально вписывается в окно по ширине и высоте, без прокрутки. По последующей просьбе медведь поднят с y=394.805 до y=300. По следующей просьбе текст «here is my links» удалён, фотография закреплена слева с отступами 24 px сверху и слева; меню поднято на 24 px от нижнего края.
+## Tests
 
-Навигация повторяет подход из исходника https://mouchette.org/indextop.php?Nav=DOM: стандартный HTML select с начальным пунктом «browse me» и переходом при выборе страницы. Оформление нативное, зависит от браузера и ОС. Меню закреплено внизу окна по центру, вне Figma-композиции.
+Run `node --test tests/*.test.mjs`. Tests use isolated temporary databases.
 
-Клавиатура: Tab переводит фокус на список; раскрытие, выбор стрелками, подтверждение Enter и закрытие Escape обрабатываются браузером.
+## Hosting
 
-Проверено: шесть переходов, возврат домой из каждой заглушки, открытие меню клавиатурой, отсутствие прокрутки при 1440 × 900 и 1366 × 768. Оба GIF сохраняют прозрачность и исходное бесконечное повторение.
+A private GitHub repository stores source; it does not make the website public by itself. GitHub Pages alone cannot run the shared database and upload backend.
 
-## Interactive bedroom — added 1 November 2026
+Use a Node.js 24 host with persistent storage. Run `npm start`, configure `HOST=0.0.0.0` and the host's `PORT`, and set `DIARY_DATA_DIR` to a private persistent directory. Back up that directory separately. Static assets are served by the application; private files are not exposed by its path allowlist.
 
-Open `my-bedroom.html` (or choose “my bedroom” in browse me).
-The page uses the 1440 × 900 Figma frame `186:1360`, with all 15 visual object slots kept separate, including the two different crops of the original trash/bottle image. The composition scales uniformly and does not scroll.
+The old experimental single-file Worker build is not a production asset pipeline for this large image/music collection. Serve the assets as files rather than embedding them in a Worker. The local `.openai` hosting configuration is intentionally excluded from Git.
 
-Files copied unchanged from `~/Desktop/myhome`:
-
-| File | Bedroom object |
-| --- | --- |
-| `chandelier.gif` | Chandelier |
-| `planta1.gif` | Plant on the desk |
-| `Nicci1001.gif` | Woman in a red dress |
-| `noplacelikehome.gif` | Ruby slippers |
-
-Ten original Figma images are stored in `assets/bedroom/`: rug, window, desk, gold frame, sign, computer screen, bed, trash/bottle, piano lettering and butterfly. No matching originals for those objects were present in the local collection. No unlit chandelier asset was available; the original GIF is retained and dimmed. The unrelated bear and angel GIFs are not added to the bedroom.
-
-Interactions:
-
-- Click the bed (or focus it and press Enter/Space) to move it left and reveal “dear diary...”. Click again to restore it. `diary.html` links back to the bedroom.
-- Click the chandelier to toggle lighting. The window and computer screen stay brighter; animations continue.
-- Click the blue trash bag to open `trash`. Double-click `poem.txt`, or focus it and press Enter/Space, to open Notepad. Download links to the actual UTF-8 file in `assets/text/poem.txt`.
-- Drag either window by its title bar. The title bars also accept arrow keys; Shift increases the step. Close with × or Escape.
-- The music player uses a single audio element so bed/light/window interactions do not reset it. Playback requires Play; previous/next preserve playing or paused state.
-
-### Add songs
-
-No `.mp3`, `.wav`, `.ogg` or `.m4a` files were found in `~/Desktop/myhome` (including subfolders). Add songs to `assets/audio/` and list them in `assets/audio/playlist.js`:
-
-```js
-window.BEDROOM_TRACKS = [
-  { title: "Your track title", file: "assets/audio/your-file.mp3" }
-];
-```
-
-Alternatively, use the player’s ⏏ control to choose local audio for the current visit. These files stay in the browser and are not uploaded. With an empty playlist, playback controls are disabled.
-
-### Verification
-
-Verified local asset existence, identical GIF bytes, exact poem contents and successful HTTP retrieval of the poem. Browser checks covered image loading, all 15 object geometries at a measured 1440 × 900 CSS viewport, a smaller approximately 1024 × 768 viewport, diary navigation/toggling, both light states, trash and Notepad opening/closing, mouse dragging of both windows, keyboard movement, and navigation home and back. Keyboard focus on the partially clipped chandelier no longer scrolls the composition.
-
-Limits: the embedded browser timed out waiting for its download event, so the operating-system download completion was not confirmed; the native download link and served file were verified. Actual audio playback, previous/next switching, and playback continuity have not been tested with music because no audio files were supplied. No synthetic test audio or music was created.
-
-Implementation: `bedroom.css`, `bedroom.js`, `my-bedroom.html`, `diary.html`. The existing homepage and native browse-me navigation are retained.
-
-
-### Updated navigation and trash behavior
-
-`browse me` is now present only in `index.html`. The blue trash bag is a direct native download link to `assets/text/poem.txt`; clicking it or pressing Enter while focused starts the download immediately. The intermediate Explorer and Notepad windows have been removed. These changes supersede the earlier window/navigation description.
-
-
-The bedroom music player now uses macOS-style window chrome, decorative traffic-light dots, a light track display and compact transport controls. Its audio behavior and local-file selection are unchanged.
-
-
-Lights-off now uses one near-black multiply overlay across the completed collage, with soft pools of light at the screen and window and a very faint warm glow at the chandelier. Individual images are no longer filtered separately, avoiding rectangular background seams. The player is dimmed too; the overlay does not capture pointer events or pause GIFs.
-
-
-## Shared diary
-
-Read DIARY.md for the SQLite server, anonymous diary, admin access, protections and pending production setup. The earlier direct-file/static-server preview is suitable only for visual pages; the diary requires the Node server.
-
-## Latest diary experiment: please correct me.
-
-The diary is now a collaborative editor for five statements, with independent append-only histories. This supersedes the earlier Q&A/name-field descriptions. Existing diary records are retained, not converted into fictional edits. See DIARY.md for current behavior, storage, admin access and verification. The bedroom and other artwork were not changed.
+All images and recordings are local in `assets/`; runtime pages do not depend on Desktop paths or temporary Figma URLs. `SCREENSHOTS.md` lists the screenshot files. `DIARY.md` contains notes about preserved earlier diary versions.
