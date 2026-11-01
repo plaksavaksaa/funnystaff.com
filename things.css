@@ -1,0 +1,25 @@
+html:has(body.things-page) { height: auto; overflow: auto; background: #fff; scrollbar-gutter: stable; }
+body.things-page { margin: 0; min-height: 100vh; height: auto; overflow: visible; color: #1c1917; background: #fff; font: 16px "Times New Roman",Times,serif; }
+.things-page a { color: #2d213f; text-decoration: underline; }
+.things-board { --unit: calc(min(1280px, 100vw - 48px) / 1200); width: min(1280px, calc(100% - 48px)); height: calc(var(--board-height) * var(--unit)); position: relative; margin: 28px auto 0; }
+.thing-photo { position: absolute; display: block; left: var(--x); top: calc(var(--y) * var(--unit)); width: var(--w); padding: 0; border: 0; border-radius: 0; background: none; }
+.thing-photo img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; }
+.thing-photo:focus-visible { outline: 2px dotted #341a52; outline-offset: 5px; }
+#photo-viewer { position: fixed; inset: 0; box-sizing: border-box; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 24px; border: 0; border-radius: 0; background: transparent; box-shadow: none; outline: none; }
+#photo-viewer[open] { display: grid; place-items: center; }
+#photo-viewer::backdrop { background: rgb(255 255 255 / 95%); }
+#large-photo { display: block; width: auto; height: auto; max-width: calc(100vw - 48px); max-height: calc(100dvh - 48px); object-fit: contain; margin: 0; }
+html:has(#photo-viewer[open]) { overflow: hidden; }
+@media (max-width: 650px) {
+ .things-board { width: calc(100% - 32px); height: auto; margin: 24px 16px 60px; display: flex; flex-direction: column; gap: 37px; }
+ .thing-photo { position: relative; left: auto; top: auto; width: var(--mobile-width); margin-left: var(--mobile-offset); }
+ .thing-photo:nth-child(3n) { margin-top: 16px; }
+}
+
+.collection-title { width: min(1280px, calc(100% - 48px)); margin: 24px auto 0; font-size: 20px; font-weight: normal; }
+@media (max-width: 650px) { .collection-title { width: calc(100% - 32px); margin: 24px 16px 0; } }
+#fly { position: fixed; left: 0; top: 0; z-index: 30; font: 13px Arial, sans-serif; padding: 2px 7px; border: 2px outset #ddd; border-radius: 0; color: #000; background: #eee; cursor: pointer; will-change: transform; }
+#fly[hidden] { display: none; }
+#fly { position: absolute; width: 96px; height: 25px; padding: 1px 14px; }
+
+.squashed-fly { position: absolute; z-index: 30; color: #000; background: #fff; font: 16px 'Times New Roman', serif; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }

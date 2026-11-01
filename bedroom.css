@@ -1,0 +1,62 @@
+html:has(body.bedroom) { background: #fff; }
+html:has(body.bedroom.lights-off) { background: #030305; }
+body.bedroom { background: #fff; }
+.bedroom-viewport { position: fixed; inset: 0; overflow: clip; isolation: isolate; background: #fff; }
+.bedroom-scene { position: absolute; left: 50%; top: 0; width: 1440px; height: 900px; transform: scale(var(--scene-scale)) translateX(-50%); transform-origin: top left; isolation: isolate; overflow: clip; background: #fff; }
+.room-object { position: absolute; margin: 0; display: block; object-fit: cover; }
+.object-button { padding: 0; border: 0; border-radius: 0; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+.object-button > img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.object-button:focus-visible { outline: 2px dotted #000080; outline-offset: -3px; }
+.computer-screen { transform: rotate(1.14deg); }
+.desk { box-shadow: 0 4px 6.6px -11px #0004; }
+.bed { filter: drop-shadow(0 4px 11.3px #0004); transition: transform 200ms ease-out; }
+.bed.is-moved { transform: translateX(-64px); }
+.diary-link { position: absolute; left: 565px; top: 783px; z-index: 2; color: #0000ee; text-decoration: underline; font: 16px "Times New Roman", serif; }
+.diary-link[hidden] { display: none; }
+.trash-crop { display: block; position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.trash-crop img { position: absolute; left: 0; top: 0; width: 183.6%; height: 100%; max-width: none; }
+.bottle { display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.bottle-rotation { transform: rotate(105deg); flex: none; }
+.bottle-crop { position: relative; width: 141.962px; height: 129.137px; overflow: hidden; }
+.bottle-crop img { position: absolute; height: 92.74%; left: -94.01%; top: 3.63%; width: 183.6%; max-width: none; }
+/* Multiply one lighting layer over the assembled collage. Keeping all original
+   image backgrounds together prevents rectangular seams in the dark. */
+.bedroom.lights-off { background: #030305; }
+.bedroom-viewport::after { content: ""; position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0; }
+.lights-off .bedroom-viewport::after {
+  opacity: 1;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(ellipse calc(175px * var(--scene-scale)) calc(125px * var(--scene-scale)) at calc(50% + 224px * var(--scene-scale)) calc(307px * var(--scene-scale)), rgba(184, 205, 246, .52) 0%, rgba(125, 153, 205, .16) 34%, transparent 100%),
+    radial-gradient(ellipse calc(300px * var(--scene-scale)) calc(285px * var(--scene-scale)) at calc(50% + 502px * var(--scene-scale)) calc(177px * var(--scene-scale)), rgba(175, 197, 232, .42) 0%, rgba(119, 147, 194, .17) 50%, transparent 100%),
+    radial-gradient(ellipse calc(175px * var(--scene-scale)) calc(165px * var(--scene-scale)) at calc(50% - 270px * var(--scene-scale)) calc(112px * var(--scene-scale)), rgba(255, 201, 117, .06) 0%, rgba(235, 172, 86, .018) 45%, transparent 100%),
+    #030305;
+}
+.lights-off .music-player { filter: brightness(.18); }
+/* A compact macOS-style Music window; bedroom objects retain their layout. */
+.music-player { position: fixed; z-index: 15; top: 12px; left: 12px; width: 238px; transform: scale(clamp(.3, var(--scene-scale), 1)); transform-origin: top left; overflow: hidden; border: 1px solid #00000024; border-radius: 11px; background: #f5f5f5ee; box-shadow: 0 8px 22px #0000001c, 0 1px 3px #00000012; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: #27272a; font: 12px -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+.player-title { position: relative; display: flex; align-items: center; justify-content: center; height: 29px; background: linear-gradient(#f4f4f4, #e8e8e8); border-bottom: 1px solid #00000012; color: #5c5c61; font-size: 11px; font-weight: 600; }
+.window-dots { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; }
+.window-dots i { width: 9px; height: 9px; border: 1px solid #00000015; border-radius: 50%; background: #ff5f57; }
+.window-dots i:nth-child(2) { background: #febc2e; }
+.window-dots i:nth-child(3) { background: #28c840; }
+.track-display { display: block; margin: 10px 15px 4px; overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; line-height: 18px; font-size: 12px; font-weight: 500; color: #46464c; }
+.player-controls { position: relative; display: flex; gap: 9px; align-items: center; justify-content: center; height: 39px; margin: 0 11px 7px; padding: 0 25px; }
+.player-controls button { display: inline-flex; align-items: center; justify-content: center; width: 29px; height: 29px; padding: 0; border: 0; border-radius: 6px; background: transparent; color: #3c3c43; cursor: pointer; }
+.player-controls button:hover:not(:disabled) { background: #00000009; }
+.player-controls button:active:not(:disabled) { background: #00000012; }
+.player-controls button:disabled { color: #b4b4b9; cursor: default; }
+#play-pause { width: 34px; height: 34px; }
+#play-pause::before { content: ""; display: block; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid currentColor; margin-left: 3px; }
+#play-pause[aria-pressed="true"]::before { width: 12px; height: 16px; margin-left: 0; border: 0; background: linear-gradient(to right, currentColor 0 4px, transparent 4px 8px, currentColor 8px 12px); }
+.load-songs { position: absolute; right: 0; display: flex; align-items: center; justify-content: center; width: 25px; height: 27px; border-radius: 5px; overflow: hidden; cursor: pointer; color: #77777e; font-size: 17px; }
+.load-songs:hover { background: #00000009; }
+.load-songs input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.player-controls button:focus-visible, .load-songs:focus-within { outline: 2px solid #007aff; outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) { .bed { transition: none; } }
+
+.room-object:not(a):not(button) { pointer-events:none; }
+.coffee-mug {clip-path:ellipse(48% 47% at 50% 52%);}
+.coffee-mug span {position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.coffee-mug img {position:absolute;height:100%;width:286.2%;left:-190.14%;top:0;max-width:none;}
+#playlist {display:block;box-sizing:border-box;width:calc(100% - 20px);margin:0 10px 6px;font:11px Arial,sans-serif;border-radius:0;}

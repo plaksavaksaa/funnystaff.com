@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>my bedroom — ~girl/public_html</title>
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="bedroom.css">
+<script src="script.js" defer></script><script src="assets/audio/playlist.js" defer></script><script src="bedroom.js" defer></script>
+</head><body class="bedroom lights-off">
+<main class="bedroom-viewport" aria-label="My bedroom"><div class="bedroom-scene" data-node-id="186:1360">
+<img class="room-object rug" data-node-id="186:1441" src="assets/bedroom/rug.png" alt="" style="left:370.5167px;top:0px;width:1249.7283px;height:1249.7283px" >
+<img class="room-object room-window" data-node-id="186:1371" src="assets/bedroom/window.png" alt="Open window with a blue sky" style="left:1048.7579px;top:36.4189px;width:347.6878px;height:297.4662px" >
+<img class="room-object desk" data-node-id="186:1383" src="assets/bedroom/desk.png" alt="Wooden desk, shelves, computer and chair" style="left:370.5168px;top:21.777px;width:1235.4143px;height:694.797px" >
+<img class="room-object picture-frame" data-node-id="186:1373" src="assets/bedroom/frame.png" alt="Gold picture frame" style="left:56.2547px;top:235.2637px;width:201.111px;height:232.2298px" >
+<img class="room-object plant" data-node-id="186:1375" src="assets/gifs/planta1.gif" alt="Animated carnivorous plant" style="left:742.1075px;top:235.2637px;width:127.5851px;height:168.9321px" >
+<img class="room-object sign" data-node-id="186:1385" src="assets/bedroom/sign.png" alt="No bras sign" style="left:89.2437px;top:283.8122px;width:135.1329px;height:135.1329px" >
+<a href="assets/text/poem.txt" download="poem.txt" aria-label="Download poem.txt" class="room-object object-button computer-screen" style="left:882.7745px;top:272.5256px;width:122.899px;height:70.968px"><img class="monitor-image" data-node-id="186:1388" src="assets/bedroom/screen.png" alt="Little girl becomes god"></a>
+<button id="chandelier" class="room-object object-button chandelier" data-node-id="186:1397" style="left:307.0337px;top:-115.6029px;width:286.3581px;height:372.4983px" type="button" aria-label="Turn lights on" aria-pressed="true"><img src="assets/gifs/chandelier.gif" alt="Pixel-art chandelier"></button>
+<a class="diary-link" href="diary.html" target="_blank" rel="noopener noreferrer" hidden>your ad here...</a>
+<button id="bed" class="room-object object-button bed" data-node-id="186:1415" style="left:-15.4676px;top:522.8575px;width:675.357px;height:387.4331px" type="button" aria-label="Move bed to reveal diary" aria-expanded="false"><img src="assets/bedroom/bed.png" alt="Bed with a pinkish brown duvet"></button>
+<a id="trash" class="room-object object-button trash" data-node-id="186:1449" style="left:768.502px;top:454.3532px;width:208.3808px;height:175.7841px" href="screenshots.html" target="_blank" rel="noopener noreferrer" aria-label="Open paper for recycling"><span class="trash-crop"><img src="assets/bedroom/trash-and-bottle.png" alt="Blue trash bag"></span></a>
+<img class="room-object girl" data-node-id="186:1421" src="assets/gifs/Nicci1001.gif" alt="Woman in a sparkling red dress" style="left:951.9104px;top:291.4751px;width:335.9638px;height:558.574px" >
+<img class="room-object piano" data-node-id="186:1432" src="assets/bedroom/piano.png" alt="Joyful Sound Piano Studio" style="left:529.8975px;top:805.5491px;width:506px;height:89px" >
+<img class="room-object shoes" data-node-id="186:1435" src="assets/gifs/noplacelikehome.gif" alt="Sparkling ruby slippers" style="left:643.7205px;top:731.509px;width:129px;height:86px" >
+<img class="room-object butterfly" data-node-id="186:1438" src="assets/bedroom/butterfly.png" alt="Blue butterfly, Lisa" style="left:909.8975px;top:57.5666px;width:129px;height:168px" >
+<div class="room-object bottle" data-node-id="186:1451" style="left:370.52px;top:603.96px;width:161.479px;height:170.548px"><div class="bottle-rotation"><div class="bottle-crop"><img src="assets/bedroom/trash-and-bottle.png" alt="Crumpled plastic bottle"></div></div></div><a href="coffee.html" target="_blank" rel="noopener noreferrer" class="room-object object-button coffee-mug" data-node-id="191:1501" aria-label="Open coffee" style="left:495.5px;top:511.64px;width:106.514px;height:106.694px"><span><img src="assets/coffee/used.png" alt="Coffee mug"></span></a></div></main>
+<section class="music-player" aria-label="Music player">
+  <div class="player-title"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Music</span></div>
+  <output id="track-name" class="track-display" aria-live="polite">no songs loaded</output>
+  <select id="playlist" aria-label="Select a track"></select>
+  <div class="player-controls">
+    <button id="previous-track" type="button" aria-label="Previous track"><svg viewBox="0 0 20 16" width="18" height="16" aria-hidden="true"><path d="M2 2h2v12H2zm15 0v12L5 8z" fill="currentColor"/></svg></button>
+    <button id="play-pause" type="button" aria-label="Play" aria-pressed="false"></button>
+    <button id="next-track" type="button" aria-label="Next track"><svg viewBox="0 0 20 16" width="18" height="16" aria-hidden="true"><path d="M16 2h2v12h-2zM3 2l12 6-12 6z" fill="currentColor"/></svg></button>
+    <label class="load-songs" title="Open local songs">⏏<input id="song-files" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a" multiple aria-label="Open local songs"></label>
+  </div>
+  <audio id="room-audio" preload="metadata"></audio>
+</section>
+</body></html>

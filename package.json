@@ -1,0 +1,1 @@
+{"name":"princess-morning","private":true,"type":"module","scripts":{"start":"node backend/local-server.mjs","test":"node --test tests/diary.test.mjs","build":"node scripts/build-worker.mjs","admin:password":"node scripts/admin-password.mjs"}}

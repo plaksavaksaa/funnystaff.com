@@ -1,0 +1,21 @@
+/* The composition uses Figma's 1440 × 900 coordinate system.
+   Scale the whole scene uniformly: positions, typography and images stay together. */
+:root { --scene-scale: 1; }
+* { box-sizing: border-box; }
+html { color: #000; background: #f4d8e9; width: 100%; height: 100%; overflow: hidden; }
+body { width: 100%; height: 100%; overflow: hidden; margin: 0; font: 16px "Times New Roman", Times, serif; }
+.canvas { position: fixed; inset: 0; overflow: hidden; }
+.scene { position: relative; width: 1440px; height: 900px; left: 50%; transform: scale(var(--scene-scale)) translateX(-50%); transform-origin: top left; overflow: hidden; }
+.scene img, .scene p { position: absolute; margin: 0; }
+.gradient { position: absolute; --background-height: 100vh; width: var(--background-height); height: 111.1666728vw; left: calc(47.152778vw - var(--background-height) / 2); top: calc((var(--background-height) - 111.1666728vw) / 2); transform: rotate(90deg); object-fit: fill; }
+.scene p { font-family: "Times New Roman", Times, serif; font-size: 16px; font-weight: 400; line-height: normal; text-align: center; white-space: nowrap; left: 50%; transform: translateX(-50%); }
+.welcome { top: 31.21570587158203px; }
+.portrait { position: absolute; left: 24px; top: 24px; width: calc(234.8460235595703px * var(--scene-scale)); height: calc(207.4473114013672px * var(--scene-scale)); object-fit: cover; }
+.bear { left: 384.35955810546875px; top: 300px; width: 256.83551025390625px; height: 485.35845947265625px; object-fit: contain; transform: scaleX(-1); }
+.angel { left: 802.5px; top: 5.215705871582031px; width: 96px; height: 80px; object-fit: contain; }
+/* Like Mouchette: a browser-native select with no custom control styling.
+   Only its viewport position is set here; it is independent of the composition. */
+.browse { position: fixed; z-index: 10; bottom: 24px; left: 50%; transform: translateX(-50%); }
+.room { min-height: 100vh; background: #e7f7e8; }
+.placeholder { padding: 48px 24px; text-align: center; }
+.placeholder h1 { font-size: 20px; font-weight: normal; }

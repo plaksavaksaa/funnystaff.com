@@ -1,0 +1,17 @@
+html,body { margin:0; min-height:100%; background:#fff; color:#000; font:16px 'Times New Roman',serif; }
+.ad-page { position:relative; min-height:4200px; padding:30px 0 80px; box-sizing:border-box; }
+.ad-column { position:relative; z-index:1; width: min(420px, 38%); margin:0 auto; }
+h1 { font-size:24px; font-weight:normal; margin:0 0 26px; }
+textarea { display:block; box-sizing:border-box; width:100%; min-height:110px; padding:5px; font:16px 'Times New Roman',serif; resize:vertical; border:1px solid #777; border-radius:0; background:#fff; color:#000; }
+button { cursor:pointer; font:13px 'Times New Roman',serif; border-radius:0; }
+.ad-column form button { margin-top:6px; }
+#message { font-size:13px; min-height:18px; overflow-wrap:anywhere; }
+.ad-text { white-space:pre-wrap; overflow-wrap:anywhere; margin:0; padding:24px 0; border-bottom:1px solid #ddd; line-height:1.35; }
+.ad-space { position:absolute; width:var(--size); height:var(--size); top:var(--top); padding:0; border:0; background:#000; color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; font:16px 'Times New Roman',serif; }
+.ad-space.left { left:var(--offset); } .ad-space.right { right:var(--offset); }
+.ad-space img { display:block; width:100%; height:100%; object-fit:contain; }
+.ad-space:focus-visible { outline:2px dotted #555; outline-offset:5px; }
+.ad-honeypot { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+@media(max-width:650px) { .ad-column {width:48%;} h1 {font-size:20px;} .ad-space {width:var(--small);height:var(--small);font-size:12px;} .ad-space.left{left:2%;}.ad-space.right{right:2%;} }
+.ad-space { width:min(var(--size),18vw); height:auto; aspect-ratio:1; }
+@media(max-width:650px) { .ad-space {width:min(var(--small),21vw);height:auto;} }
